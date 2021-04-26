@@ -1,0 +1,73 @@
+<header xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.springframework.org/schema/security">
+    <link rel="stylesheet" th:href="@{main.css}">
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+        <div class="container">
+            <img sec:authorize="isAuthenticated()" th:src="@{\Images\logoveb.png}" width="90" height="90" class="d-inline-block align-top" alt="">
+            <a class="navbar-brand" href="/"><h1>Bestium</h1></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+                    aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse justify-content-end" id="navbarsExampleDefault">
+                <ul class="navbar-nav m-auto">
+                    <li class="nav-item m-auto">
+                        <a class="nav-link active" href="/products">Home</a>
+                    </li>
+                    <li class="nav-item m-auto" sec:authorize="hasRole('ROLE_ADMIN')">
+                        <a class="nav-link active" href="/categories">Categories of products</a>
+                    </li>
+                    <li class="nav-item m-auto" sec:authorize="hasRole('ROLE_ADMIN')">
+                        <a class="nav-link active" href="/manufacturers">Brands</a>
+                    </li>
+                </ul>
+
+
+                <form class="form-inline my-2 my-lg-0">
+                    <div class="input-group input-group-sm">
+                        <input type="text" class="form-control" aria-label="Small"
+                               aria-describedby="inputGroup-sizing-sm" name="searchName"
+                               placeholder="Search...">
+                        <div class="input-group-append">
+                            <button type="button" class="btn btn-secondary btn-number">
+                                <i class="fa fa-search"></i>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+                <ul class="nav navbar-nav navbar-right">
+
+                    <li class="nav-item" sec:authorize="isAuthenticated()">
+                        <a class="nav-link" href="#">
+                            <th:block th:if="${#request.getRemoteUser() != null}"
+                                      th:text="${#request.getRemoteUser()}"></th:block>
+                        </a>
+                    </li>
+                    <li class="nav-item" sec:authorize="isAuthenticated()">
+                        <a class="btn btn-outline-warning btn-sm ml-3" href="/shopping-cart">
+                            <i class="fa fa-shopping-cart"></i> Your cart
+                        </a>
+                    </li>
+                    <li class="nav-item" sec:authorize="hasRole('ROLE_USER')">
+                        <a class="btn btn-outline-success btn-sm ml-3" href="/wish-list">
+                            <i class="fa fa-shopping-cart"></i> Wish List
+                        </a>
+                    </li>
+                    <li class="nav-item" sec:authorize="isAuthenticated()">
+                        <a class="btn btn-outline-danger btn-sm ml-3" href="/logout">
+                            <i class="fa fa-shopping-cart"></i> Log out
+                        </a>
+                    </li>
+                    <li class="nav-item" sec:authorize="!isAuthenticated()">
+                        <a class="btn btn-outline-success btn-sm ml-3" href="/login">
+                            <i class="fa fa-shopping-cart"></i> Log in
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>

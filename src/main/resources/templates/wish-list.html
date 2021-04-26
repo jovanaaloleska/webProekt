@@ -1,0 +1,52 @@
+<html>
+<th:block xmlns:th="http://www.thymeleaf.org">
+    <section class="jumbotron text-center">
+        <div class="container">
+            <h3 class="jumbotron-heading">Wish list for
+                <th:block th:if="${#request.getRemoteUser() != null}" th:text="${#request.getRemoteUser()}"></th:block>
+            </h3>
+        </div>
+    </section>
+
+    <div th:if="${hasError}">
+        <!--/*@thymesVar id="error" type="java.lang.String"*/-->
+        <h5 class="text-center text-danger" th:text="${error}"></h5>
+    </div>
+
+    <div class="container mb-4">
+        <div class="row">
+            <!--/*@thymesVar id="products" type="java.util.ArrayList"*/-->
+            <!--/*@thymesVar id="size" type="java.lang.Integer"*/-->
+            <div class="col-12" th:if="${products.size() > 0}">
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th scope="col">Product</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Manufacturer</th>
+                            <th scope="col">Category</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="product : ${products}">
+                            <!--/*@thymesVar id="getName" type="java.lang.String"*/-->
+                            <td th:text="${product.getName()}"></td>
+                            <!--/*@thymesVar id="getPrice" type="java.lang.Integer"*/-->
+                            <td th:text="${product.getPrice()}"></td>
+                            <!--/*@thymesVar id="getManufacturer" type="java.lang.Object"*/-->
+                            <td th:text="${product.getManufacturer() != null} ? ${product.getManufacturer().getName()} : 'No Manufacturer'"></td>
+                            <!--/*@thymesVar id="getCategory" type="java.lang.Object"*/-->
+                            <td th:text="${product.getCategory() != null} ? ${product.getCategory().getName()} : 'No Category'"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</th:block>
+
+</html>
+
+

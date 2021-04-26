@@ -1,0 +1,23 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Brands</title>
+    <meta charset="utf-8"/>
+</head>
+<body>
+<div style="width:800px; margin:0 auto;">
+<h2>Brands</h2>
+<ul>
+
+    <li th:each="manufacturer: ${manufacturers}">
+        <th:block th:text="${manufacturer.name}"/> (<th:block th:text="${manufacturer.address}"/>)</li>
+</ul>
+
+    <h3>Add New Brand</h3>
+    <form th:action="@{/manufacturers/add}" th:method="POST">
+        <label for='name'>Name:</label><input id='name' type='text' name='name'/>
+        <label for='address'>Address:</label><input id='address' type='text' name='address'/>
+        <input type='submit' value='Submit'/>
+    </form>
+</div>
+</body>
+</html>

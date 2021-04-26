@@ -1,0 +1,28 @@
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+<div class="container" xmlns:th="http://www.thymeleaf.org">
+    <link rel="stylesheet" th:href="@{main.css}">
+            <section class="jumbotron text-center">
+                <h1>Welcome to BESTIUM</h1>
+                <h2 class="jumbotron-heading"> An IT shop were we care about you getting the best IT stuff.</h2>
+            </section>
+
+    <form class="form-signin mt-xl-5" method="post" action="/login">
+        <h2 class="form-signin-heading">Sign in</h2>
+        <p>
+            <label for="username" class="sr-only">Username</label>
+            <input type="text" id="username" name="username" class="form-control" placeholder="Username" required=""
+                   autofocus="">
+        </p>
+        <p>
+            <label for="password" class="sr-only">Password</label>
+            <input type="password" id="password" name="password" class="form-control" placeholder="Password"
+                   required="">
+        </p>
+
+        <div th:text="${param.error}" class="text-danger"></div>
+
+        <button class="btn btn-lg btn-warning btn-block" type="submit">Sign in</button>
+    </form>
+    <a href="/register" class="btn btn-block btn-dark">Register here</a>
+</div>
+</html>

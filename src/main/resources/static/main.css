@@ -1,0 +1,15 @@
+div.error {
+    color:red;
+}
+.navbar{
+    background-color: #20B2AA !important;
+}
+.navbar .navbar-brand{
+    color: #FFFFFF !important;
+    font-weight: bolder;
+}
+.navbar .nav-item a{
+    font-weight: bold;
+}
+
+
