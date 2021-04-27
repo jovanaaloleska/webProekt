@@ -18,7 +18,7 @@ public class WishList {
     @ManyToOne
     private User user;
 
-    @ManyToMany
+    @OneToMany
     private List<Product> products;
 
     @Enumerated(EnumType.STRING)
